@@ -23,7 +23,6 @@ public class Minesweeper {
         int col = theCol;
         while (!(row == 0 || col == 0)) {
             numFields++;
-            System.out.println("Field #" + numFields + ":");
             char[][] field = new char[row + 1][col + 1];
             for (int i = 0; i < row + 1; i++) {
                 char[] line = theScanner.nextLine().toCharArray();
@@ -33,21 +32,16 @@ public class Minesweeper {
                     }
                 }
             }
-//            for(int i = 0; i < field.length; i++){
-//                for(int j = 0; j < field[0].length; j++){
-//                    System.out.print(field[i][j]);
-//                }
-//                 System.out.println();
-//            }
             char[][] filledMineField = fillField(field);
-            displayOut(filledMineField);
+            displayOut(filledMineField, numFields);
             row = theScanner.nextInt();
             col = theScanner.nextInt();
 
         }
     }
 
-    private static void displayOut(final char[][] theFilledMine) {
+    private static void displayOut(final char[][] theFilledMine, int theNumFields) {
+        System.out.println("Field #" + theNumFields + ":");
         for (char[] chars : theFilledMine) {
             for (int j = 0; j < theFilledMine[0].length; j++) {
                 System.out.print(chars[j]);
@@ -69,23 +63,6 @@ public class Minesweeper {
         }
         return numFields;
     }
-//    private static char[][] fillField(final char[][] theField) {
-//        int row = theField.length;
-//        int col = theField[0].length;
-//        char[][] mineFields = new char[row][col];
-//        for(int i = 0; i < row; i++){
-//            for(int j = 0; j < col; j++) {
-//                if(theField[i][j] == '*') {
-//                    mineFields[i][j] = '*';
-//                } else {
-//                    mineFields[i][j] = adjacent(theField, row, col);
-//                }
-//            }
-//        }
-//
-//        return mineFields;
-//    }
-
 
     private static char adjacent(final char[][] theField, final int theRow, final int theCol) {
         int myCount = 0;
